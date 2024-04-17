@@ -5,18 +5,18 @@ import { Context } from "../store/appContext";
 
 import "../../styles/demo.css";
 
-export const Demo = () => {
+export const EditContact = () => {
 	const { store, actions } = useContext(Context);
-	const [fullName, setFullName] = useState("");
-	const [email, setEmail] = useState("");
-	const [phone, setPhone] = useState("");
-	const [address, setAddress] = useState("");
+    const [fullName, setFullName] = useState(store.userToEdit?.name || "");
+    const [email, setEmail] = useState(store.userToEdit?.email || "");
+    const [phone, setPhone] = useState(store.userToEdit?.phone || "");
+    const [address, setAddress] = useState(store.userToEdit?.address || "");
 	const [contactAdded, setContactAdded] = useState(false);
 	const [formValid, setFormValid] = useState(false);
 	
-	const addContacts = () => {
+	const editContactInForm = () => {
 		if (fullName.trim() !== "" && email.trim() !== "" && phone.trim() !== "" && address.trim() !== "") {
-			actions.addContactsAPI(fullName, phone, email, address)
+			actions.editContactAPI(fullName, phone, email, address, store.userToEdit.id)
 			setContactAdded(true)
 		}
 	}
@@ -26,37 +26,39 @@ export const Demo = () => {
 		else setFormValid(false)
 	},[fullName, email, phone, address])
 
+    console.log(fullName);
+
 	return (
 		<div className="container mt-5">
-			<h1 className="text-center">Add a new contact</h1>
+			<h1 className="text-center">Edit a contact</h1>
 			{!formValid &&  
 			<div className="alert alert-danger" role="alert">
 			Some fields are missing
 		  	</div>}
 			{contactAdded &&
 			<div className="alert alert-success" role="alert">
-			Your contact was added successfully!
+			Your contact was edited successfully!
 		  	</div>}
 			<form>
-				<div className="mb-3 ">
+				<div className="mb-3">
 					<label htmlFor="fullName" className="form-label">Full Name</label>
-					<input type="text" className="form-control" onChange={(e)=>setFullName(e.target.value)} id="fullName" placeholder="Name and last name"/>
+					<input type="text" className="form-control" onChange={(e)=>setFullName(e.target.value)} value={fullName} id="fullName"/>
 				</div>
 				<div className="mb-3">
 					<label htmlFor="emailAddress" className="form-label">Email</label>
-					<input type="email" className="form-control" onChange={(e)=>setEmail(e.target.value)} id="emailAddress" placeholder="name@example.com"/>
+					<input type="text" className="form-control" onChange={(e)=>setEmail(e.target.value)} value={email} id="emailAddress"/>
 				</div>
 				<div className="mb-3">
 					<label htmlFor="phone" className="form-label">Phone</label>
-					<input type="text" className="form-control" onChange={(e)=>setPhone(e.target.value)} id="phone" placeholder="+34 678 123 456"/>
+					<input type="text" className="form-control" onChange={(e)=>setPhone(e.target.value)} value={phone} id="phone"/>
 				</div>
 				<div className="mb-3">
 					<label htmlFor="address" className="form-label">Address</label>
-					<input type="text" className="form-control" onChange={(e)=>setAddress(e.target.value)} id="address" placeholder="Enter your address"/>
+					<input type="text" className="form-control" onChange={(e)=>setAddress(e.target.value)} value={address} id="address"/>
 				</div>
-				<button onClick={addContacts} className="btn btn-primary w-100">Save</button>
+				<button onClick={editContactInForm} className="btn btn-primary w-100">Save</button>
 			</form>
-	  		<Link to="/">
+            <Link to="/">
 				or get back to contacts
 			</Link>
 		</div>

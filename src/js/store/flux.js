@@ -13,7 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			contacts: []
+			contacts: [],
+			userToEdit: {},
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -55,6 +56,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				fetch('https://playground.4geeks.com/contact/agendas/JorgeAJT/contacts', requestOptions)
 					.then(response => response.json())
+					.then(() => getActions().getContacts())
+			},
+			editContact: (iDSelected) => {
+				fetch("https://playground.4geeks.com/contact/agendas/JorgeAJT/contacts")
+				.then( (response) => response.json())
+				.then( data => {
+					const userSelected = data.contacts.find(user => user.id === iDSelected)
+					setStore({ userToEdit: userSelected })
+				})	
+			},
+			editContactAPI: (name, phone, email, address, iDToEdit) => {
+				const requestOptions = {
+					method: 'PUT',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ 
+						"name": name,
+						"phone": phone,
+						"email": email,
+						"address": address
+					 })
+				};
+				fetch(`https://playground.4geeks.com/contact/agendas/JorgeAJT/contacts/${iDToEdit}`, requestOptions)
+					.then(response => response.json())
+					.then( setStore({ userToEdit: {} }))
 					.then(() => getActions().getContacts())
 			},
 			loadSomeData: () => {

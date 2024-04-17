@@ -1,14 +1,21 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+
 import { Context } from "../store/appContext";
 
 import "../../styles/home.css";
 
-export const Home = () => {
+export const Contact = () => {
 	const { store, actions } = useContext(Context);
 	let contactID = 0
 
 	return (
 		<div className="container">
+			<div className="my-4 d-flex justify-content-end">
+				<Link to="/addContact">
+					<button className="btn btn-success">Add new contact</button>
+				</Link>
+			</div>
 			<ul className="list-group">
 				{store.contacts.map((contact, index) => 
 					<li 
@@ -22,7 +29,12 @@ export const Home = () => {
 						{contact.email}
 						<br />
 						{contact.address}
-						<button data-bs-toggle="modal" data-bs-target="#deleteModal" onClick={()=> contactID = contact.id}> eliminar</button>			
+						<div>
+						<Link to="/editContact">
+						<i className="fa-solid fa-pencil btn ms-auto" onClick={()=>actions.editContact(contact.id)}></i>
+						</Link>
+						<i className="fa-solid fa-trash-can btn" data-bs-toggle="modal" data-bs-target="#deleteModal" onClick={()=> contactID = contact.id}></i>	
+						</div>
 					</li>
 				)}
 			</ul>
