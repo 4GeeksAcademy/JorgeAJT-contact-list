@@ -1,0 +1,14 @@
+.img-profile {
+    width: 150px;
+    height: 150px;
+}
+.btn-success {
+    background-color: #fb8625;
+    border-color: #fb8625;
+}
+.btn-success:hover {
+    background-color: #863c00;
+}
+.contact {
+    background-color: #ffdfa4;
+}

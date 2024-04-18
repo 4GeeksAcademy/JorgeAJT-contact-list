@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 import "../../styles/home.css";
+import profileImage from "../../img/profile-image.jpg"
 
 export const Contact = () => {
 	const { store, actions } = useContext(Context);
@@ -13,23 +14,32 @@ export const Contact = () => {
 		<div className="container">
 			<div className="my-4 d-flex justify-content-end">
 				<Link to="/addContact">
-					<button className="btn btn-success">Add new contact</button>
+					<button className="btn btn-success fw-bold">Add new contact</button>
 				</Link>
 			</div>
 			<ul className="list-group">
 				{store.contacts.map((contact, index) => 
 					<li 
 						key={index}
-						className="list-group-item d-flex justify-content-between"
+						className="list-group-item d-flex contact"
 						>
-						{contact.name}
-						<br />
-						{contact.phone}
-						<br />
-						{contact.email}
-						<br />
-						{contact.address}
-						<div>
+						<img src={profileImage} alt="Profile" className="img-profile rounded-circle"/>
+						<div className="d-flex flex-column justify-content-center ms-5">
+							<div className="fw-bold mb-1">{contact.name}</div>
+							<div>
+								<i className="fa-solid fa-phone me-3"></i>
+								{contact.phone}
+							</div>
+							<div>
+								<i className="fa-solid fa-envelope me-3"></i>
+								{contact.email}
+							</div>
+							<div>
+								<i className="fa-solid fa-location-dot me-3"></i>
+								{contact.address}
+							</div>
+						</div>
+						<div className="ms-auto">
 						<Link to="/editContact">
 						<i className="fa-solid fa-pencil btn ms-auto" onClick={()=>actions.editContact(contact.id)}></i>
 						</Link>
