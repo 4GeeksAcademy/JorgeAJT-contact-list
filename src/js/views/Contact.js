@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { Context } from "../store/appContext";
@@ -9,6 +9,10 @@ import profileImage from "../../img/profile-image.jpg"
 export const Contact = () => {
 	const { store, actions } = useContext(Context);
 	let contactID = 0
+
+useEffect(() => {
+		actions.setEditing(false);
+	}, [])
 
 	return (
 		<div className="container">
