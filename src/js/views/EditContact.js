@@ -26,8 +26,6 @@ export const EditContact = () => {
 		else setFormValid(false)
 	},[fullName, email, phone, address])
 
-    console.log(fullName);
-
 	return (
 		<div className="container mt-5">
 			<h1 className="text-center">Edit a contact</h1>
