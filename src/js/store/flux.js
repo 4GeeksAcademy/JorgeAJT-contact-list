@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			contacts: [],
 			userToEdit: {},
+			editing: false
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -47,6 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			editContact: (iDSelected) => {
 				const userSelected = getStore().contacts.find(user => user.id === iDSelected)
 				setStore({ userToEdit: userSelected })
+				setStore({editing: true })
 			},
 			editContactAPI: (name, phone, email, address, iDToEdit) => {
 				const requestOptions = {
@@ -64,6 +66,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then( setStore({ userToEdit: {} }))
 					.then(() => getActions().getContacts())
 			},
+			setEditing: (value) => {
+				setStore({ editing: value });
+			  },
 			loadSomeData: () => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))

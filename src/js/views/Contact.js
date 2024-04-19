@@ -40,7 +40,7 @@ export const Contact = () => {
 							</div>
 						</div>
 						<div className="ms-auto">
-						<Link to="/editContact">
+						<Link to="/addContact">
 						<i className="fa-solid fa-pencil btn ms-auto" onClick={()=>actions.editContact(contact.id)}></i>
 						</Link>
 						<i className="fa-solid fa-trash-can btn" data-bs-toggle="modal" data-bs-target="#deleteModal" onClick={()=> contactID = contact.id}></i>	
