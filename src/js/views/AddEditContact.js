@@ -26,7 +26,8 @@ export const AddEditContact = () => {
 		}
 	}
 
-	const editContactInForm = () => {
+	const editContactInForm = (e) => {
+		e.preventDefault() 
 		if (fullName.trim() !== "" && email.trim() !== "" && phone.trim() !== "" && address.trim() !== "") {
 			actions.editContactAPI(fullName, phone, email, address, store.userToEdit.id)
 			setContactAdded(true)
