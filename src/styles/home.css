@@ -6,7 +6,7 @@
     background-color: #fb8625;
     border-color: #fb8625;
 }
-.btn-success:hover {
+.btn-success:hover, .btn-success:active  {
     background-color: #863c00;
 }
 .contact {

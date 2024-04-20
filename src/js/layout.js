@@ -3,8 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Contact } from "./views/Contact";
-import { AddContact } from "./views/AddContact";
-import { EditContact } from "./views/EditContact";
+import { AddEditContact } from "./views/AddEditContact";
 import injectContext from "./store/appContext";
 
 import { Footer } from "./component/footer";
@@ -21,8 +20,7 @@ const Layout = () => {
 				<ScrollToTop>
 					<Routes>
 						<Route path="/" element={<Contact />} />
-						<Route path="/addContact" element={<AddContact />} />
-						<Route path="/editContact" element={<EditContact />} />
+						<Route path="/addEditContact" element={<AddEditContact />} />
 					</Routes>
 					<Footer />
 				</ScrollToTop>

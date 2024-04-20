@@ -5,7 +5,7 @@ import { Context } from "../store/appContext";
 
 import "../../styles/aboutContacts.css";
 
-export const AddContact = () => {
+export const AddEditContact = () => {
 	const { store, actions } = useContext(Context);
     const [fullName, setFullName] = useState(store.userToEdit?.name || "");
     const [email, setEmail] = useState(store.userToEdit?.email || "");

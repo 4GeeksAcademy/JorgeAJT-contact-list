@@ -17,34 +17,34 @@ useEffect(() => {
 	return (
 		<div className="container">
 			<div className="my-4 d-flex justify-content-end">
-				<Link to="/addContact">
+				<Link to="/addEditContact">
 					<button className="btn btn-success fw-bold">Add new contact</button>
 				</Link>
 			</div>
-			<ul className="list-group">
+			<ul className="list-group row">
 				{store.contacts.map((contact, index) => 
 					<li 
 						key={index}
-						className="list-group-item d-flex contact"
+						className="list-group-item d-flex contact col-12"
 						>
 						<img src={profileImage} alt="Profile" className="img-profile rounded-circle"/>
-						<div className="d-flex flex-column justify-content-center ms-5">
+						<div className="d-flex flex-column justify-content-center ms-3 ms-xl-5">
 							<div className="fw-bold mb-1">{contact.name}</div>
 							<div>
-								<i className="fa-solid fa-phone me-3"></i>
+								<i className="fa-solid fa-phone me-xl-3"></i>
 								{contact.phone}
 							</div>
 							<div>
-								<i className="fa-solid fa-envelope me-3"></i>
+								<i className="fa-solid fa-envelope me-xl-3"></i>
 								{contact.email}
 							</div>
 							<div>
-								<i className="fa-solid fa-location-dot me-3"></i>
+								<i className="fa-solid fa-location-dot me-xl-3"></i>
 								{contact.address}
 							</div>
 						</div>
 						<div className="ms-auto">
-						<Link to="/addContact">
+						<Link to="/addEditContact">
 						<i className="fa-solid fa-pencil btn ms-auto" onClick={()=>actions.editContact(contact.id)}></i>
 						</Link>
 						<i className="fa-solid fa-trash-can btn" data-bs-toggle="modal" data-bs-target="#deleteModal" onClick={()=> contactID = contact.id}></i>	

@@ -13,7 +13,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then( data => setStore({ contacts: data.contacts }))	
 			},
 			deleteContact: (iDToDelete) => {
-				console.log("eliminar index: " + iDToDelete);
 				fetch(`https://playground.4geeks.com/contact/agendas/JorgeAJT/contacts/${iDToDelete}`, { method: 'DELETE' })
 				.then( () => getActions().getContacts())
 			},

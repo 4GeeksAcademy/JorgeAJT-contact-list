@@ -2,6 +2,6 @@
     background-color: #fb8625;
     border-color: #fb8625;
 }
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:active {
     background-color: #863c00;
 }
